@@ -3,11 +3,13 @@ import axios from "axios"
 import toast from "react-hot-toast"
 import { isEmail, isStrongPassword } from "validator"
 import { useNavigate } from "react-router-dom"
+import LoadingSpinner from "../components/LoadingSpinner"
 const backendUrl = import.meta.env.VITE_BACKEND_URL
 
 
 const SignUpPage = () => {
   const [formStep, setFormStep] = useState("send")
+  const [isLoading, setIsLoading] = useState(false)
   const emailRef = useRef(null)
   const userRef = useRef(null)
   const passRef = useRef(null)
@@ -90,6 +92,7 @@ const SignUpPage = () => {
       return
     }
     try{
+      setIsLoading(true)
       const response = await axios.post(`${backendUrl}/auth/signup`, {email: emailRef.current.value, username: userRef.current.value, password: passRef.current.value})
       const data = response.data
       if(data.success){
@@ -100,6 +103,9 @@ const SignUpPage = () => {
     catch(error){
       console.log(error)
       toast.error(error.response.data.message)
+    }
+    finally{
+      setIsLoading(false)
     }
   }
 
@@ -133,7 +139,7 @@ const SignUpPage = () => {
             />
             {formStep !== "verify" && formStep !== "signup" && (
               <button
-                className="shrink-0 bg-accent text-text-primary font-medium px-4 py-2.5 rounded-lg hover:bg-accent-soft transition-colors"
+                className="shrink-0 bg-accent text-text-primary font-medium px-4 py-2.5 rounded-lg hover:bg-accent-soft transition-colors cursor-pointer"
                 type="submit"
               >
                 Send OTP
@@ -158,7 +164,7 @@ const SignUpPage = () => {
               />
               <button
                 type="submit"
-                className="shrink-0 bg-accent text-text-primary font-medium px-4 py-2.5 rounded-lg hover:bg-accent-soft transition-colors"
+                className="shrink-0 bg-accent text-text-primary font-medium px-4 py-2.5 rounded-lg hover:bg-accent-soft transition-colors cursor-pointer"
               >
                 Verify OTP
               </button>
@@ -166,7 +172,7 @@ const SignUpPage = () => {
             <button
               type="button"
               onClick={handleSendingOtp}
-              className="self-end text-sm text-text-secondary hover:text-accent transition-colors mt-1"
+              className="self-end text-sm text-text-secondary hover:text-accent transition-colors mt-1 cursor-pointer"
             >
               Resend OTP
             </button>
@@ -202,12 +208,23 @@ const SignUpPage = () => {
  
             <button
               type="submit"
-              className="w-full bg-accent text-text-primary font-medium py-2.5 rounded-lg hover:bg-accent-soft transition-colors"
+              disabled={isLoading}
+              className="w-full flex items-center justify-center bg-accent text-text-primary font-medium py-2.5 rounded-lg hover:bg-accent-soft transition-colors cursor-pointer disabled:cursor-not-allowed disabled:opacity-70 disabled:cursor-not-allowed"
             >
-              Sign Up
+              {isLoading ? <LoadingSpinner size="sm" /> : "Sign Up"}
             </button>
           </>
         )}
+        <p className="text-center text-sm text-text-secondary mt-6">
+          Already have an account?{" "}
+          <button
+            type="button"
+            onClick={() => navigate("/login")}
+            className="text-accent font-medium hover:underline cursor-pointer"
+          >
+            Log In
+          </button>
+        </p>
       </form>
     </div>
   )
