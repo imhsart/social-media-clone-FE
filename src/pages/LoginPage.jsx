@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom"
 import toast from "react-hot-toast"
 import { isEmail } from "validator"
 import LoadingSpinner from "../components/LoadingSpinner"
+import { fetchCurrentUser } from "../redux/slices/UserSlice"
+import { useDispatch } from "react-redux"
 const backendUrl = import.meta.env.VITE_BACKEND_URL
 
 
@@ -11,6 +13,7 @@ const LoginPage = () => {
   const userRef = useRef(null)
   const [isLoading, setIsLoading] = useState(false)
   const passRef = useRef(null)
+  const dispatch = useDispatch()
   const navigate = useNavigate()
 
   async function handleLogin(e){
@@ -32,6 +35,7 @@ const LoginPage = () => {
       const data = response.data
       if(data.success){
         toast.success(data.message)
+        dispatch(fetchCurrentUser())
         navigate("/home")
       }
     }
