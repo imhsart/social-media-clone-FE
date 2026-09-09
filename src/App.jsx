@@ -30,7 +30,7 @@ const App = () => {
         </Route>
         <Route element={<ProtectedRoute />}>
           <Route element={<HomeLayout />}>
-            <Route path="home" element={<HomePage />} />
+            <Route path="/home" element={<HomePage />} />
           </Route>
           <Route path="/complete-profile" element={<CompleteProfile />} />
         </Route>
