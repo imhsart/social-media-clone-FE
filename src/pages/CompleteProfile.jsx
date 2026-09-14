@@ -186,6 +186,7 @@ const CompleteProfile = () => {
                 <input
                   id="DOB"
                   name="DOB"
+                  max={new Date().toISOString().split("T")[0]}
                   type="date"
                   className="bg-bg border border-line text-text-primary rounded-lg px-3 py-2 outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors [color-scheme:dark]"
                 />

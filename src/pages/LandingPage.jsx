@@ -41,7 +41,7 @@ const LandingPage = () => {
           </h1>
 
           <p className="text-base mb-10 text-text-secondary">
-            The coming together of people
+            The Connection
           </p>
 
           <p className="text-lg leading-relaxed mb-12 max-w-md mx-auto text-text-primary">
