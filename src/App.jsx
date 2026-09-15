@@ -7,6 +7,7 @@ import ProtectedRoute from "./components/ProtectedRoute"
 import CompleteProfile from "./pages/CompleteProfile"
 import HomeLayout from "./layouts/HomeLayout"
 import HomePage from "./pages/HomePage"
+import ProfilePage from "./pages/ProfilePage"
 import LoginPage from "./pages/LoginPage"
 import { Toaster } from "react-hot-toast"
 import { fetchCurrentUser } from "./redux/slices/UserSlice"
@@ -31,6 +32,7 @@ const App = () => {
         <Route element={<ProtectedRoute />}>
           <Route element={<HomeLayout />}>
             <Route path="/home" element={<HomePage />} />
+            <Route path="/profile" element={<ProfilePage />} />
           </Route>
           <Route path="/complete-profile" element={<CompleteProfile />} />
         </Route>

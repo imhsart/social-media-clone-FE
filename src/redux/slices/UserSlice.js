@@ -27,6 +27,12 @@ const userSlice = createSlice({
       state.status = "failed"
       state.data = null
       state.error = null
+    },
+    updateDp: (state, action) => {
+      state.data.displayPicture = action.payload
+    },
+    updateProfile: (state, action) => {
+      state.data = {...state.data, ...action.payload}
     }
   },
   extraReducers: (builder) => {
@@ -49,5 +55,5 @@ const userSlice = createSlice({
 })
 
 export { fetchCurrentUser }
-export const { resetUser } = userSlice.actions
+export const { resetUser, updateDp, updateProfile } = userSlice.actions
 export default userSlice.reducer

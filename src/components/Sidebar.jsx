@@ -1,7 +1,5 @@
 import { NavLink } from "react-router-dom"
 import { Home, Compass, Bell, MessageCircle, Bookmark, Users, CircleUserRound, LogOut } from "lucide-react"
-import sidebarLogo from "../assets/samyogah_logo.png"
-import mdLogo from "../assets/md_logo.png"
 import axios from "axios"
 import toast from "react-hot-toast"
 import { useDispatch } from "react-redux"
@@ -47,28 +45,16 @@ const Sidebar = () => {
   return (
     <>
       <div
-        className="hidden md:flex md:flex-col md:justify-between bg-bg border-r border-line fixed left-0 top-0 bottom-0 z-50 w-20 lg:w-[15%] lg:min-w-[220px] lg:max-w-[280px]"
+        className="hidden md:flex md:flex-col md:justify-between bg-bg border-r border-line fixed left-0 top-20 bottom-0 z-40 w-20 lg:w-[15%] lg:min-w-[220px] lg:max-w-[280px]"
       >
         <div>
-          <div className="flex items-center justify-center lg:justify-start px-2 lg:px-5 py-3">
-            <img 
-              src={mdLogo}
-              alt="sidebar-logo"
-              className="hidden md:block h-8 w-8 object-contain lg:hidden"
-            />
-            <img 
-              src={sidebarLogo} 
-              alt="sidebar-logo"
-              className="hidden lg:block h-8 w-auto max-w-full object-contain" 
-            />
-          </div>
           <div className="flex flex-col">
             {navItems.map(({ to, label, Icon }) => (
               <NavLink
                 key={to}
                 to={to}
                 className={({ isActive }) =>
-                  `relative flex items-center gap-4 px-2 lg:px-5 py-3 justify-center lg:justify-start transition-colors ${
+                  `relative flex items-center gap-4 px-2 lg:px-5 py-4 justify-center lg:justify-start transition-colors ${
                     isActive
                       ? "text-text-primary"
                       : "text-text-secondary hover:text-text-primary hover:bg-surface"

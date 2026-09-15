@@ -4,6 +4,7 @@ import defaultDp from "../assets/default_profile_picture.png"
 import { useSelector } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
+import navbarLogo from "../assets/samyogah_logo.png"
 import toast from "react-hot-toast"
 import { useDispatch } from "react-redux"
 import { resetUser } from "../redux/slices/UserSlice"
@@ -35,8 +36,15 @@ const Navbar = () => {
   }
 
   return (
-    <header className="fixed top-0 right-0 left-0 md:left-20 lg:left-[clamp(220px,15%,280px)] z-40 flex h-16 md:h-20 items-center justify-between border-b border-line bg-bg px-4 md:px-6 lg:px-8">
-      <div className="relative w-full max-w-md">
+    <header className="fixed top-0 right-0 left-0 z-40 flex h-16 md:h-20 items-center justify-between border-b border-line bg-bg pl-2 pr-4 md:px-6 lg:pl-4 lg:pr-8">
+      <Link to="/home" className="flex items-center shrink-0 pr-4 md:pr-6">
+        <img
+          src={navbarLogo}
+          alt="navbar-logo"
+          className="block h-9 w-auto max-w-full object-contain"
+        />
+      </Link>
+      <div className="relative w-full max-w-md min-w-0">
         <Search
           size={18}
           className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-text-secondary"
@@ -82,12 +90,12 @@ const Navbar = () => {
         <div className="relative z-50">
           <button
             onClick={() => setMenuOpen(prev => !prev)}
-            className="flex items-center gap-1.5"
+            className="flex shrink-0 items-center gap-1.5"
           >
             <img
               src={userData?.displayPicture || defaultDp}
               alt="profile-picture"
-              className="h-9 w-9 rounded-full object-cover ring-1 ring-line"
+              className="h-9 w-9 shrink-0 rounded-full object-cover ring-1 ring-line"
             />
             <ChevronDown 
               size={16}

@@ -4,10 +4,10 @@ import Navbar from "../components/Navbar"
 
 const HomeLayout = () => {
   return (
-    <div>
+    <div className="font-mono">
       <Sidebar />
       <Navbar />
-      <main className="pt-16 md:pt-20 pb-16 md:pb-0 md:pl-20 lg:pl-[clamp(220px,15%,280px)]">
+      <main className="pt-16 pb-16 md:pt-20 md:pb-2 md:pl-20 lg:pl-[clamp(220px,15%,280px)] bg-bg">
         <Outlet />
       </main>
     </div>
