@@ -54,7 +54,7 @@ const Sidebar = () => {
                 key={to}
                 to={to}
                 className={({ isActive }) =>
-                  `relative flex items-center gap-4 px-2 lg:px-5 py-4 justify-center lg:justify-start transition-colors ${
+                  `relative flex items-center gap-4 px-2 lg:px-5 py-4 justify-center cursor-pointer lg:justify-start transition-colors ${
                     isActive
                       ? "text-text-primary"
                       : "text-text-secondary hover:text-text-primary hover:bg-surface"
@@ -82,7 +82,7 @@ const Sidebar = () => {
           <button
             onClick={handleLogout}
             aria-label="Log out"
-            className="group flex items-center gap-4 justify-center lg:justify-start w-full rounded-lg px-2 lg:px-3 py-2.5 text-red-400 transition-all shadow-[0_0_10px_rgba(239,68,68,0.35)] hover:text-red-300 hover:bg-red-500/10 hover:shadow-[0_0_12px_rgba(239,68,68,0.6)]"
+            className="group flex items-center gap-4 justify-center cursor-pointer lg:justify-start w-full rounded-lg px-2 lg:px-3 py-2.5 text-red-400 transition-all shadow-[0_0_10px_rgba(239,68,68,0.35)] hover:text-red-300 hover:bg-red-500/10 hover:shadow-[0_0_12px_rgba(239,68,68,0.6)]"
           >
             <LogOut size={20} strokeWidth={2} className="shrink-0" />
             <span className="hidden lg:inline text-sm font-medium">Log Out</span>
@@ -100,7 +100,7 @@ const Sidebar = () => {
             key={to}
             to={to}
             aria-label={label}
-            className="relative flex flex-1 flex-col items-center justify-center py-3 text-text-secondary aria-[current=page]:text-accent"
+            className="relative flex flex-1 flex-col items-center cursor-pointer justify-center py-3 text-text-secondary aria-[current=page]:text-accent"
           >
             {({ isActive }) => (
               <>

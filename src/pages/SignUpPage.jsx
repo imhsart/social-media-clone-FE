@@ -182,7 +182,10 @@ const SignUpPage = () => {
           <>
             <div className="flex flex-col gap-1.5 mb-4">
               <label className="text-sm text-text-secondary" htmlFor="username">
-                Username
+                Username{" "}
+                <span className="text-xs text-accent">
+                  (cannot be changed later)
+                </span>
               </label>
               <input
                 type="text"

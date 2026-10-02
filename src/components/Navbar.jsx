@@ -37,7 +37,7 @@ const Navbar = () => {
 
   return (
     <header className="fixed top-0 right-0 left-0 z-40 flex h-16 md:h-20 items-center justify-between border-b border-line bg-bg pl-2 pr-4 md:px-6 lg:pl-4 lg:pr-8">
-      <Link to="/home" className="flex items-center shrink-0 pr-4 md:pr-6">
+      <Link to="/home" className="flex items-center cursor-pointer shrink-0 pr-4 md:pr-6">
         <img
           src={navbarLogo}
           alt="navbar-logo"
@@ -51,7 +51,7 @@ const Navbar = () => {
         />
         <input 
           type="text"
-          placeholder="Search for people, posts, or topics..."
+          placeholder="Search for people..."
           className="w-full rounded-full border border-line bg-surface py-2.5 pl-11 pr-4 text-sm text-text-primary placeholder:text-text-secondary focus:outline-none focus:ring-1 focus:ring-accent"
         />
       </div>
@@ -59,25 +59,25 @@ const Navbar = () => {
       <div className="flex items-center gap-4 md:gap-6 lg:gap-7 pl-3">
         <button
           aria-label="Create post"
-          className="text-text-secondary hover:text-text-primary transition-colors"
+          className="text-text-secondary hover:text-text-primary cursor-pointer transition-colors"
         >
           <SquarePen size={22} strokeWidth={1.75} />
         </button>
         <button
           aria-label="Friends"
-          className="hidden md:inline-flex text-text-secondary hover:text-text-primary transition-colors"
+          className="hidden md:inline-flex text-text-secondary cursor-pointer hover:text-text-primary transition-colors"
         >
           <Users size={22} strokeWidth={1.75} />
         </button>
         <button
           aria-label="Messages"
-          className="hidden md:inline-flex text-text-secondary hover:text-text-primary transition-colors"
+          className="hidden md:inline-flex text-text-secondary cursor-pointer hover:text-text-primary transition-colors"
         >
           <MessageCircle size={22} strokeWidth={1.75} />
         </button>
         <button
           aria-label="Notifications"
-          className="relative hidden md:inline-flex text-text-secondary hover:text-text-primary transition-colors"
+          className="relative hidden md:inline-flex text-text-secondary cursor-pointer hover:text-text-primary transition-colors"
         >
           <Bell size={22} strokeWidth={1.75} />
           {/* here will be the notification condition for notif number */}
@@ -90,7 +90,7 @@ const Navbar = () => {
         <div className="relative z-50">
           <button
             onClick={() => setMenuOpen(prev => !prev)}
-            className="flex shrink-0 items-center gap-1.5"
+            className="flex shrink-0 items-center gap-1.5 cursor-pointer"
           >
             <img
               src={userData?.displayPicture || defaultDp}
@@ -107,7 +107,7 @@ const Navbar = () => {
               <Link
                 to="/notifications"
                 onClick={() => setMenuOpen(false)}
-                className="md:hidden flex items-center justify-between px-4 py-2 text-sm text-text-primary hover:bg-accent-soft"
+                className="md:hidden flex items-center justify-between cursor-pointer px-4 py-2 text-sm text-text-primary hover:bg-accent-soft"
               >
                 Notifications
                 {/* {notificationCount > 0 && <span className="text-accent text-xs">{notificationCount}</span>} */}
@@ -115,21 +115,21 @@ const Navbar = () => {
               <Link
                 to="/saved"
                 onClick={() => setMenuOpen(false)}
-                className="md:hidden block px-4 py-2 text-sm text-text-primary hover:bg-accent-soft"
+                className="md:hidden block px-4 py-2 text-sm cursor-pointer text-text-primary hover:bg-accent-soft"
               >
                 Saved
               </Link>
               <Link
                 to="/profile"
                 onClick={() => setMenuOpen(false)}
-                className="block px-4 py-2 text-sm text-text-primary hover:bg-accent-soft"
+                className="block px-4 py-2 text-sm text-text-primary cursor-pointer hover:bg-accent-soft"
               >
                 View Profile
               </Link>
               <Link
                 to="/settings"
                 onClick={() => setMenuOpen(false)}
-                className="block px-4 py-2 text-sm text-text-primary hover:bg-accent-soft"
+                className="block px-4 py-2 text-sm text-text-primary cursor-pointer hover:bg-accent-soft"
               >
                 Settings
               </Link>
@@ -138,7 +138,7 @@ const Navbar = () => {
                   setMenuOpen(prev => !prev)
                   handleLogout()
                 }}
-                className="block w-full px-4 py-2 text-left text-sm text-accent hover:bg-accent-soft">
+                className="block w-full px-4 py-2 text-left text-sm cursor-pointer text-accent hover:bg-accent-soft">
                 Log out
               </button>
             </div>

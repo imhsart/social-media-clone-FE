@@ -55,7 +55,7 @@ const EditProfile = ({isOpen, onClose, userData}) => {
       <div className="relative w-full max-w-md rounded-2xl bg-surface border border-line p-6">
         <div className="flex items-center justify-between mb-5">
           <h2 className="text-lg font-semibold text-text-primary">Edit profile</h2>
-          <button onClick={onClose} className="text-text-secondary hover:text-text-primary">
+          <button onClick={onClose} className="text-text-secondary cursor-pointer hover:text-text-primary">
             <X size={20} />
           </button>
         </div>
@@ -123,7 +123,7 @@ const EditProfile = ({isOpen, onClose, userData}) => {
           <button
             type="submit"
             disabled={savingProfile}
-            className="mt-2 rounded-full bg-accent py-2.5 text-sm font-medium text-cream hover:bg-accent-soft transition-colors disabled:opacity-60"
+            className="mt-2 rounded-full bg-accent py-2.5 text-sm font-medium cursor-pointer text-cream hover:bg-accent-soft transition-colors disabled:opacity-60"
           >
             {savingProfile ? "Saving..." : "Save changes"}
           </button>

@@ -6,6 +6,7 @@ import { updateDp } from "../redux/slices/UserSlice"
 import defaultDp from "../assets/default_profile_picture.png"
 import { useState } from "react"
 import EditProfile from "../components/EditProfile"
+import ShowPosts from "../components/ShowPosts"
 const backendUrl = import.meta.env.VITE_BACKEND_URL
 
 const ProfilePage = () => {
@@ -16,9 +17,9 @@ const ProfilePage = () => {
   const [imgPreview, setImgPreview] = useState(null)
 
   const stats = [
-    { label: "Posts", value: 0 },
-    { label: "Followers", value: 0 },
-    { label: "Following", value: 0 },
+    { label: "Posts", value: userData.postCount },
+    { label: "Followers", value: userData.followersCount },
+    { label: "Following", value: userData.followingCount },
   ]
 
   function formatJoinDate(dateString){
@@ -107,7 +108,7 @@ const ProfilePage = () => {
         </div>
         <button
           onClick={() => setShowEditModal(true)}
-          className="mt-4 md:mt-0 mb-1 md:mb-4 rounded-full border border-accent px-5 py-2 text-sm font-medium text-accent hover:bg-accent-soft hover:text-cream transition-colors"
+          className="mt-4 md:mt-0 mb-1 md:mb-4 rounded-full border border-accent px-5 py-2 text-sm font-medium text-accent hover:bg-accent-soft cursor-pointer hover:text-cream transition-colors"
         >
           Edit profile
         </button>
@@ -165,17 +166,17 @@ const ProfilePage = () => {
       {/* Posts */}
       <div className="mt-8 border-t border-line px-4 md:px-8">
         <div className="flex gap-6 -mb-px">
-          <button className="relative py-3 text-sm font-medium text-accent">
+          <button className="relative py-3 text-sm font-medium cursor-pointer text-accent">
             Posts
             <span className="absolute left-0 -bottom-px h-[2px] w-full bg-accent rounded-full" />
           </button>
-          <button className="py-3 text-sm font-medium text-text-secondary hover:text-text-primary transition-colors">
+          <button className="py-3 text-sm font-medium text-text-secondary cursor-pointer hover:text-text-primary transition-colors">
             Saved
           </button>
         </div>
-
-        <div className="py-16 flex flex-col items-center justify-center my-2 text-text-secondary">
-          <p className="text-sm">No posts yet</p>
+        {/* to remove saved from here and make a separate section in profile button dropdown, also add icons next to posts */}
+        <div className="py-6">
+          <ShowPosts />
         </div>
       </div>
       {showEditModal && (
