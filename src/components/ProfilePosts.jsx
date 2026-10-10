@@ -1,17 +1,21 @@
 import { fetchAllPosts } from "../redux/slices/PostsSlice"
 import { useEffect, useRef } from "react"
 import toast from "react-hot-toast"
-import { ImageOff } from "lucide-react"
+import { ImageOff, Play } from "lucide-react"
 import { useDispatch, useSelector } from "react-redux"
-import LoadingSpinner from "../components/LoadingSpinner"
-import DefaultPost from "../assets/default_post_image.jpg"
+import LoadingSpinner from "./LoadingSpinner"
+import DefaultPost from "../assets/default_post.png"
+import { Link } from "react-router-dom"
 
-const ShowPosts = () => {
+const ProfilePosts = () => {
   const dispatch = useDispatch()
   const { items, page, hasMore, error, status } = useSelector(state => state.posts)
   const myId = useSelector((state) => state.user.data?.userId)
   const sentinelRef = useRef(null)
+  const getPoster = (url) => url?.replace(/\.[^./]+$/, ".jpg")
+  const canLoadMore = hasMore && status === "succeeded"
 
+  //inital fetch
   useEffect(() => {
     if(myId){
       dispatch(fetchAllPosts())
@@ -24,7 +28,6 @@ const ShowPosts = () => {
     }
   }, [error])
 
-  const canLoadMore = hasMore && status === "succeeded"
 
   useEffect(() => {
     const node = sentinelRef.current
@@ -43,18 +46,20 @@ const ShowPosts = () => {
     return () => observer.disconnect()
   }, [canLoadMore, page, dispatch])
 
+  //post grid skeleton
   if(items.length === 0 && (status === "idle" || status === "loading")){
     return (
-      <div className="grid grid-cols-3 gap-1 md:gap-2 w-full">
+      <div className="grid grid-cols-3 gap-1 w-full">
         {
           Array.from({ length: 12}).map((_, i) => (
-            <div key={i} className="aspect-square rounded-lg bg-surface border border-line animate-pulse" />
+            <div key={i} className="aspect-[3/4] rounded-lg bg-surface border border-line animate-pulse" />
           ))
         }
       </div>
     )
   }
 
+  //failed fetch posts case
   if(items.length === 0 && status === "failed"){
     return (
       <div className="flex flex-col items-center gap-3 py-10 text-text-secondary">
@@ -69,6 +74,7 @@ const ShowPosts = () => {
     )
   }
 
+  //empty posts
   if(items.length === 0){
     return (
       <div className="flex flex-col items-center gap-2 py-10 text-text-secondary">
@@ -80,23 +86,26 @@ const ShowPosts = () => {
 
   return (
     <div className="w-full">
-      <div className="grid grid-cols-4 gap-1 md:gap-2">
+      <div className="grid grid-cols-4 gap-1">
         {items.map((item) => (
-          <div
+          <Link
             key={item._id}
-            className="group relative aspect-square cursor-pointer overflow-hidden rounded-lg bg-surface border border-line"
+            to={`/user/${myId}/posts/${item._id}`}
+            className="group relative aspect-[3/4] cursor-pointer overflow-hidden rounded-lg bg-surface border border-line"
           >
             <img
-              src={item?.media?.url || DefaultPost}
+              src={item?.media?.resourceType === "video" ? getPoster(item.media.url) : item?.media?.url || DefaultPost}
               alt="post"
               loading="lazy"
               className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
             />
+            {item?.media?.resourceType === "video" && <Play size={16} className="absolute right-2 top-2 text-cream" />}
             <div className="absolute inset-0 bg-bg/0 group-hover:bg-bg/30 transition-colors" />
-          </div>
+          </Link>
         ))}
       </div>
 
+      {/* Intersection observer element */}
       <div ref={sentinelRef} className="flex justify-center py-6">
         {status === "loading" && <LoadingSpinner size="sm" /> }
         {status === "failed" && (
@@ -112,4 +121,4 @@ const ShowPosts = () => {
   )
 }
 
-export default ShowPosts
+export default ProfilePosts

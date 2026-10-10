@@ -6,7 +6,7 @@ import { updateDp } from "../redux/slices/UserSlice"
 import defaultDp from "../assets/default_profile_picture.png"
 import { useState } from "react"
 import EditProfile from "../components/EditProfile"
-import ShowPosts from "../components/ShowPosts"
+import ProfilePosts from "../components/ProfilePosts"
 const backendUrl = import.meta.env.VITE_BACKEND_URL
 
 const ProfilePage = () => {
@@ -176,7 +176,7 @@ const ProfilePage = () => {
         </div>
         {/* to remove saved from here and make a separate section in profile button dropdown, also add icons next to posts */}
         <div className="py-6">
-          <ShowPosts />
+          <ProfilePosts />
         </div>
       </div>
       {showEditModal && (

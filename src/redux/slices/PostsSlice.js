@@ -68,7 +68,7 @@ const postsSlice = createSlice({
         state.hasMore = payload.hasMore
         state.status = "succeeded"
       })
-      .addCase(fetchAllPosts.rejected, (state, action) => {
+      .addCase(fetchAllPosts.rejected, (state, { payload }) => {
         state.status = "failed"
         state.error = payload
       })

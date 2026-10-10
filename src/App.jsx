@@ -12,6 +12,7 @@ import LoginPage from "./pages/LoginPage"
 import { Toaster } from "react-hot-toast"
 import { fetchCurrentUser } from "./redux/slices/UserSlice"
 import { useDispatch } from "react-redux"
+import ViewPosts from "./components/ViewPosts"
 
 const App = () => {
   const dispatch = useDispatch()
@@ -33,6 +34,7 @@ const App = () => {
           <Route element={<HomeLayout />}>
             <Route path="/home" element={<HomePage />} />
             <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/user/:userId/posts/:postId" element={<ViewPosts />} />
           </Route>
           <Route path="/complete-profile" element={<CompleteProfile />} />
         </Route>
